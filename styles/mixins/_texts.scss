@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'AlumniSans';
+    src: url('../../assets/fonts/AlumniSans-VariableFont_wght.ttf');
+}
+
+@font-face {
+    font-family: 'BebasNeue';
+    src: url('../../assets/fonts/BebasNeue-Regular.ttf');
+}
+
+@mixin tf-style(
+    $f, 
+    $s: 15px, 
+    $c: black) {
+    @if $f == 1 {
+        font-family: 'AlumniSans';
+    }
+    @else if $f == 2 {
+        font-family: 'BebasNeue';
+    }
+    font-size: $s;
+    color: $c;
+}
