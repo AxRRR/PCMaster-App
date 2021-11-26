@@ -1,0 +1,10 @@
+.container{
+    width: 100%;
+    display: block;
+    &__withFlex{
+        width: 100%;
+        margin: 0px;
+        // background-color: brown;
+        display: flex;
+    }
+}

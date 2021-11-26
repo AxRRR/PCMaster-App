@@ -1,0 +1,19 @@
+@import '../../../styles/mixins/container';
+@import '../../../styles/mixins/texts';
+
+.filter{
+    @include container-style(300px, auto, 30px, white, 0px, 0px, 0px, 130px);
+    ul{
+        list-style: none;
+        li{
+            // border: 0;
+            border-bottom: 2px solid #eeeeee;
+            // border: 1px solid #eeeeee;
+            @include tf-style(1, 25px, grey);
+            text-align: center;
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+    }
+}

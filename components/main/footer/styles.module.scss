@@ -1,0 +1,24 @@
+@import '../../../styles/mixins/texts';
+@import '../../../styles/colors.scss';
+
+.footer{
+    // background-color: #9524b7;
+    background: linear-gradient(to right, #3E1640, black);
+    height: 20rem;
+    margin-top: 8rem;
+    article{
+        height: 12rem;
+        margin-top: 1rem;
+        padding-top: 3rem;
+    }
+    h2{
+        margin-top: 3rem;
+        margin-bottom: 0px;
+        text-align: center;
+        @include tf-style(2, 25px, $COLOR_TITLE);
+    }
+    h3{
+        text-align: center;
+        @include tf-style(1, 25px, $COLOR_TITLE);
+    }
+}

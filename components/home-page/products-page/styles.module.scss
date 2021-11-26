@@ -1,0 +1,36 @@
+@import '../../../styles/mixins/container';
+@import '../../../styles/mixins/texts';
+
+.products{
+    @include container-style(60%, auto, 0px, white, 0px, 0px, 0px, 0px);
+    display: flex;
+    main{
+        width: 250px;
+        height: 400px;
+        margin-left: 23px;
+        margin-top: 20px;
+        float: left;
+    }
+    figure{
+        width: 100%;
+    }
+    img{
+        width: 200px;
+        align-items: center;
+        border-radius: 5px;
+    }
+    article{
+        width: 250px;
+        height: auto;
+        white-space: pre-line; 
+        overflow: hidden;
+        text-overflow: ellipsis;
+        @include tf-style(1, 20px, black);
+        font-size: 20px;
+    }
+    section{
+        @include tf-style(2, 20px, grey);
+        width: 100%;
+        margin-top: 20px;
+    }
+}

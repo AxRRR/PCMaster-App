@@ -1,0 +1,36 @@
+@import '../../../styles/mixins/texts';
+
+.product{
+    width: 100%;
+    display: flex;
+    header{
+        width: 500px;
+        margin: 0px;      
+    }
+    img{
+        width: 100%;
+        height: 270px;
+        border-radius: 10px;
+        &:hover{
+            // object-fit: cover;
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);    
+        }  
+    }
+    &__description{
+        width: 390px;
+        margin-left: 40px;
+        text-align: center;
+        &__name{
+            @include tf-style(1, 20px, #9c695e);
+        }
+        &__price{
+            @include tf-style(2, 35px, grey);
+        }
+    }
+    &__title{
+        margin-top: 100px;
+        width: 50%;
+        margin-left: 40px;
+    }
+}
