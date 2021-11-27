@@ -1,16 +1,17 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
-const { getProducts, setProduct } = require("../controllers/products");
+const { getProduct, setProduct } = require("../controllers/products");
 const { CheckFields } = require("../middlewares/CheckFields");
 
 
 const router = Router();
 
-router.post('/products', [
-    check('category', 'The category is required').not().isEmpty(),
-    CheckFields
-    ],
-    getProducts
+router.get('/get_product', 
+// [
+//     check('name_product', 'The category is required').not().isEmpty(),
+//     CheckFields
+//     ],
+    getProduct
 );
 
 router.post('/insert_product', [
