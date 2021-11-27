@@ -2,34 +2,61 @@ const { response } = require('express');
 const bcrypt = require('bcryptjs');
 const User = require('../models/User');
 const { GenerateJWT } = require('../helpers/GenerateJwt');
+const { ValidateFields } = require('../helpers/ValidateFields');
+const Cart = require('../models/Cart');
 
 const CreateUser = async(req, res = response) => {
-    const { name, password } = req.body;
+    const { name_user, password } = req.body;
 
     try {
-        let user = await User.findOne({ name_user: name });
+        let user = await User.findOne({ name_user });
         if(user){
             return res.status(400).json({
                 status: false,
                 response: 'Username already exist'
             });
         }
-        
-        user = new User(req.body);
 
+        user = new User(req.body);
+        console.log(user)
         const salt = bcrypt.genSaltSync();
         user.password = bcrypt.hashSync(password, salt);
 
-        await user.save();
+        
+        
+        // If the user has a cart with products, will push the items in the array cart
+        if(ValidateFields(req.body.cart_items)){
+            const { _id } = user;
+            userExist = Cart.findOne({ user: _id });
 
-        const tokenAccess = await GenerateJWT(user.id, user.name)
+            if(userExist){
+                
+            }
+
+            let cartCreate = new Cart({
+                user: _id
+            });
+            
+            for (let i = 0; i < req.body.cart_items.length; i++) {
+                cartCreate.products.push(req.body.cart_items[i]);
+            }
+
+            cartCreate.save();
+        } 
+
+        await user.save();
+        const tokenAccess = await GenerateJWT(user.id, user.name_user)
 
         res.status(201).json({
             status: true,
-            id: user.id,
-            name: user.name,
+            msg: 'The account has been registed succesfully.',
             tokenAccess,
+            data:{
+                id: user.id,
+                name: user.name_user,
+            }
         })
+
 
     } catch (error) {
         console.log(error)
@@ -41,11 +68,11 @@ const CreateUser = async(req, res = response) => {
 }
 
 const LoginUser = async(req, res = response) => {
-    const { name, password } = req.body;
+    const { name_user, password } = req.body;
 
     try {
         
-        const user = await User.findOne({ name });
+        const user = await User.findOne({ name_user });
 
         if(!user){
             return res.status(400).json({
@@ -67,17 +94,11 @@ const LoginUser = async(req, res = response) => {
 
         res.status(201).json({
             status: true,
-            id: user.id,
-            name: user.name,
-            inparty: user.inparty,
-            inpartyid: user.inpartyid,
+            msg: 'Authentication has been successfully.',
             tokenAccess,
-            stats: {
-                wins: user.wins,
-                losses: user.losses,
-                versuswin: user.versuswin,
-                grupwin: user.grupwin,
-                score: user.score,
+            data:{
+                id: user.id,
+                name: user.name_user,
             }
         })
 

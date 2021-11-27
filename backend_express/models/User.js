@@ -20,7 +20,10 @@ const UserSchema = Schema({
     },
     joined: {
         type: Date,
-    }
+    },
+    cart:[{
+        type: String
+    }]
 });
 
 
