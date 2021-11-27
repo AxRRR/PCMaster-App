@@ -9,6 +9,7 @@ dbConnection();
 app.use(express.json());
 
 app.use('/api/services', require('./routes/services'));
+app.use('/api/auth', require('./routes/auth'));
 
 http.listen( 4000, () => {
   for (let index = 0; index < 5; index++) {
